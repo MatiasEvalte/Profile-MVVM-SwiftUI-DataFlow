@@ -1,5 +1,7 @@
 import SwiftUI
 
+// MARK: - Constants
+
 private enum Constants {
   static var width: CGFloat = 250
   static var height: CGFloat = 250
@@ -7,19 +9,23 @@ private enum Constants {
 }
 
 struct ProfileView: View {
-  @EnvironmentObject var viewModel: ProfileViewModel
+  /// @StateObject é uma source of truth responsável por atualizar a view sempre que seu atributo é alterado.
+  @StateObject var viewModel = ProfileViewModel()
   
   var body: some View {
     VStack {
       HeaderView()
       ButtonsView()
     }
+    /// Passa o valor da @StateObject(viewModel) para as views filhas.
+    .environmentObject(viewModel)
   }
 }
 
 // MARK: - HeaderView
 
 struct HeaderView: View {
+  /// @EnvironmentObject - Injeta o valor @StateObject para todas as views filhas.
   @EnvironmentObject var viewModel: ProfileViewModel
   
   var body: some View {
@@ -50,6 +56,7 @@ struct HeaderView: View {
 // MARK: - ButtonsView
 
 struct ButtonsView: View {
+  /// @EnvironmentObject - Injeta o valor @StateObject para todas as views filhas.
   @EnvironmentObject var viewModel: ProfileViewModel
   
   var body: some View {
@@ -83,5 +90,4 @@ struct ButtonsView: View {
 
 #Preview {
   ProfileView()
-    .environmentObject(ProfileViewModel())
 }

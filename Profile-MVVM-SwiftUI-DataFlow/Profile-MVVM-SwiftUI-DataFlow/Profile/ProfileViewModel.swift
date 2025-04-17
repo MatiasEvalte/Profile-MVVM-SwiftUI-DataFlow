@@ -2,7 +2,9 @@ import Foundation
 
 // MARK: - ProfileViewModel
 
+/// @ObservableObject: Protocol para as classes conseguirem usar os Published.
 class ProfileViewModel: ObservableObject {
+  /// @Published (para propriedades reativas) - controla os atributos de atualização da view;
   @Published var isFollow: Bool = false
   @Published var userFollowers: String = String()
   @Published var profile = Profile(name: "Matias Evalte",
