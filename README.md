@@ -11,4 +11,5 @@
 - @EnvironmentObject - Injeta o valor @StateObject para todas as views filhas.
 
 ## Print
-<img width="168" alt="iPhone 16 Pro Max" src="https://github.com/user-attachments/assets/3adde471-54d1-4652-b520-c2946bd030bf" />
+<img width="168" alt="iPhone 16 Pro Max" src="https://github.com/user-attachments/assets/3adde471-54d1-4652-b520-c2946bd030bf" /><img width="168" alt="iPhone 16 Pro Max1" src="https://github.com/user-attachments/assets/c4166342-d6c8-4163-a30c-e3ee53ce9b04" />
+
