@@ -4,14 +4,32 @@ import Foundation
 
 class ProfileViewModel: ObservableObject {
   @Published var isFollow: Bool = false
+  @Published var userFollowers: String = String()
+  @Published var profile = Profile(name: "Matias Evalte",
+                                   nickName: "evalteMatias",
+                                   followers: 2000,
+                                   buttonTitleFollow: "Seguir",
+                                   buttonTitleUnfollow: "Deixar de seguir")
   
-  @Published var user = User(name: "Matias Evalte",
-                             nickName: "evalteMatias",
-                             followers: 2000,
-                             buttonTitleFollow: "Seguir",
-                             buttonUnfollow: "Deixar de seguir")
+  init() {
+    makeUserFollowers()
+  }
   
-  func countFollowers() -> Int {
-    return 2000
+  func countFollowers() {
+    isFollow.toggle()
+    isFollow ? (profile.followers += 1) : (profile.followers -= 1)
+    makeUserFollowers()
+  }
+  
+  func makeUserFollowers() {
+    userFollowers = customizeNumber(value: profile.followers)
+  }
+  
+  func customizeNumber(value: Int) -> String {
+    let formatter = NumberFormatter ()
+    formatter.numberStyle = .decimal
+    formatter.locale = Locale(identifier: "pt_BR")
+    let shorten = formatter.string (for: value) ?? "0"
+    return "\(shorten) k"
   }
 }

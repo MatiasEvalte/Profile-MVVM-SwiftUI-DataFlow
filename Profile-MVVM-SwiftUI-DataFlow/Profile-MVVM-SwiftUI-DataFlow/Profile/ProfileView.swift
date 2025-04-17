@@ -31,15 +31,15 @@ struct HeaderView: View {
         .cornerRadius( Constants.cornerRadius)
         .padding(.bottom, 10)
       
-      Text("Matias Evalte")
+      Text(viewModel.profile.name)
         .font(.system(size: 50,
                       weight: .bold))
       
-      Text("@evalteMatias")
+      Text(viewModel.profile.nickName)
         .font(.system(size: 25, weight: .regular))
         .foregroundColor(.gray)
       
-      Text("2.000")
+      Text(viewModel.userFollowers)
         .font(.system(size: 80 , weight: .light))
         .padding(40)
     }
@@ -55,9 +55,9 @@ struct ButtonsView: View {
   var body: some View {
     VStack {
       Button {
-        viewModel.isFollow = true
+        viewModel.countFollowers()
       } label: {
-        Label("Seguir", systemImage: "")
+        Label(viewModel.profile.buttonTitleFollow, systemImage: "")
           .font(.title3)
           .frame(maxWidth: .infinity)
       }
@@ -66,9 +66,9 @@ struct ButtonsView: View {
       .disabled(viewModel.isFollow)
       
       Button {
-        viewModel.isFollow = false
+        viewModel.countFollowers()
       } label: {
-        Label("Deixar de seguir", systemImage: "")
+        Label(viewModel.profile.buttonTitleUnfollow, systemImage: "")
           .font(.title3)
           .frame(maxWidth: .infinity)
       }
@@ -77,6 +77,7 @@ struct ButtonsView: View {
       .disabled(!viewModel.isFollow)
     }
     .padding()
+    .animation(.easeInOut, value: viewModel.isFollow)
   }
 }
 

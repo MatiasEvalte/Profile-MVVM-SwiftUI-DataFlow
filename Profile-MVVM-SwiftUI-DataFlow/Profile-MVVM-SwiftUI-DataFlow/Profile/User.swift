@@ -1,10 +1,10 @@
 
-// MARK: - User
+// MARK: - Profile
 
-struct User {
+struct Profile {
   let name: String
   let nickName: String
-  let followers: Int
+  var followers: Int
   let buttonTitleFollow: String
-  let buttonUnfollow: String
+  let buttonTitleUnfollow: String
 }
