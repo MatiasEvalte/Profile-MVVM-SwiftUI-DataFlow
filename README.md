@@ -1,4 +1,4 @@
-# SwiftUI Profile App
+# SwiftUI/MVVM Profile App
 
 ## 📚 O que foi utilizado para estudo?
 
@@ -10,4 +10,5 @@
 - @ObservedObject - Passa o valor da source of truth(@StateObject) para as views filhas;
 - @EnvironmentObject - Injeta o valor @StateObject para todas as views filhas.
 
+## Print
 <img width="168" alt="iPhone 16 Pro Max" src="https://github.com/user-attachments/assets/3adde471-54d1-4652-b520-c2946bd030bf" />
