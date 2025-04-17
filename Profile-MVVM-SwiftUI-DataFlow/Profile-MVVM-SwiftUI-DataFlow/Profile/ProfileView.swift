@@ -1,24 +1,26 @@
-
 import SwiftUI
 
+private enum Constants {
+  static var width: CGFloat = 250
+  static var height: CGFloat = 250
+  static var cornerRadius: CGFloat = 125
+}
+
 struct ProfileView: View {
+  @EnvironmentObject var viewModel: ProfileViewModel
+  
   var body: some View {
     VStack {
       HeaderView()
       ButtonsView()
     }
-    .padding()
   }
 }
 
 // MARK: - HeaderView
 
 struct HeaderView: View {
-  enum Constants {
-    static let width: CGFloat = 250
-    static let height: CGFloat = 250
-    static let cornerRadius: CGFloat = 125
-  }
+  @EnvironmentObject var viewModel: ProfileViewModel
   
   var body: some View {
     VStack {
@@ -26,7 +28,7 @@ struct HeaderView: View {
         .resizable()
         .frame(width: Constants.width,
                height: Constants.height)
-        .cornerRadius(Constants.cornerRadius)
+        .cornerRadius( Constants.cornerRadius)
         .padding(.bottom, 10)
       
       Text("Matias Evalte")
@@ -41,18 +43,19 @@ struct HeaderView: View {
         .font(.system(size: 80 , weight: .light))
         .padding(40)
     }
+    .padding()
   }
 }
 
 // MARK: - ButtonsView
 
 struct ButtonsView: View {
-  @State var isFollow: Bool = false
+  @EnvironmentObject var viewModel: ProfileViewModel
   
   var body: some View {
     VStack {
       Button {
-        isFollow = true
+        viewModel.isFollow = true
       } label: {
         Label("Seguir", systemImage: "")
           .font(.title3)
@@ -60,10 +63,10 @@ struct ButtonsView: View {
       }
       .buttonStyle(.borderedProminent)
       .controlSize(.large)
-      .disabled(isFollow)
+      .disabled(viewModel.isFollow)
       
       Button {
-        isFollow = false
+        viewModel.isFollow = false
       } label: {
         Label("Deixar de seguir", systemImage: "")
           .font(.title3)
@@ -71,11 +74,13 @@ struct ButtonsView: View {
       }
       .buttonStyle(.borderedProminent)
       .controlSize(.large)
-      .disabled(!isFollow)
+      .disabled(!viewModel.isFollow)
     }
+    .padding()
   }
 }
 
 #Preview {
   ProfileView()
+    .environmentObject(ProfileViewModel())
 }
